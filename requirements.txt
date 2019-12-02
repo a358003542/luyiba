@@ -1,0 +1,5 @@
+click
+diskcache
+requests
+my-fake-useragent
+js2py
