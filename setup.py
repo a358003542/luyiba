@@ -3,7 +3,7 @@
 
 
 from setuptools import setup, find_packages
-import codecs
+import os
 
 REQUIREMENTS = ['click',
                 'diskcache',
@@ -11,25 +11,23 @@ REQUIREMENTS = ['click',
                 'my-fake-useragent',
                 'js2py'
                 ]
-
-
-def long_description():
-    with codecs.open('README.rst', encoding='utf-8') as f:
-        return f.read()
-
+this_directory = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name='luyiba',
-    version='0.1.0',
+    version='0.1.1',
     description='英雄联盟随机英雄选择器',
     url='https://github.com/a358003542/luyiba',
-    long_description=long_description(),
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author='wanze',
     author_email='a358003542@gmail.com',
     maintainer='wanze',
     maintainer_email='a358003542@gmail.com',
     license='MIT',
-    platforms='Linux',
+    platforms='windows',
     keywords=['lol', 'python'],
     classifiers=['Development Status :: 4 - Beta',
                  'Environment :: Console',
