@@ -82,11 +82,16 @@ def main(input='', all=False, list=False, mylist=False, mylist_add='', mylist_re
         result = find_target_by_name(all_data, target_name)
         click.echo(explain_it(result))
         return
+
     # 最后默认从我最喜爱的英雄里面随机抽选
     else:
         target_name = random_mylist_safe(get_all_hero_name(data))
-        result = find_target_by_name(all_data, target_name)
-        click.echo(explain_it(result))
+
+        if target_name:
+            result = find_target_by_name(all_data, target_name)
+            click.echo(explain_it(result))
+        else:
+            click.echo('从我最喜爱的英雄里面没有找到数据。')
 
 
 if __name__ == '__main__':

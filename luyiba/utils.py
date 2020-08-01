@@ -17,11 +17,15 @@ def random_line(input):
 
 
 def random_mylist_safe(hero_name_list):
-    target_name = random.choice(get_mylist())
-    if target_name and target_name in hero_name_list:
-        return target_name
+    my_list = get_mylist()
+    if my_list:
+        target_name = random.choice(get_mylist())
+        if target_name and target_name in hero_name_list:
+            return target_name
+        else:
+            return random_mylist_safe(hero_name_list)
     else:
-        return random_mylist_safe(hero_name_list)
+        return ''
 
 
 def random_line_safe(input, hero_name_list):
