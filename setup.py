@@ -17,7 +17,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='luyiba',
-    version='0.1.2',
+    version='0.1.3',
     description='英雄联盟随机英雄选择器',
     url='https://github.com/a358003542/luyiba',
     long_description=long_description,

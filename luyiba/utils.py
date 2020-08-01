@@ -19,7 +19,7 @@ def random_line(input):
 def random_mylist_safe(hero_name_list):
     my_list = get_mylist()
     if my_list:
-        target_name = random.choice(get_mylist())
+        target_name = random.choice(my_list)
         if target_name and target_name in hero_name_list:
             return target_name
         else:
@@ -115,6 +115,35 @@ def position_translation(name):
         'top': '上单'
     }
     return ref_dict[name]
+
+
+def position_shortname(shortname):
+    ref_dict = {
+        't': 'top',
+        'm': 'mid',
+        'j': 'jungle',
+        'b': 'bottom',
+        's': 'support'
+    }
+    if shortname in ref_dict:
+        return ref_dict[shortname]
+    else:
+        return shortname
+
+
+def role_shortname(shortname):
+    ref_dict = {
+        't': 'tank',
+        'g': 'mage',
+        's': 'support',
+        'k': 'marksman',
+        'f': 'fighter',
+        'a': 'assassin'
+    }
+    if shortname in ref_dict:
+        return ref_dict[shortname]
+    else:
+        return shortname
 
 
 def role_translation(name):
