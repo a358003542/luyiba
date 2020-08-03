@@ -1,7 +1,10 @@
 # luyiba
 英雄联盟随机英雄选择器
 
-安装用pip安装即可
+安装用pip安装即可:
+```
+pip install luyiba
+```
 
 具体用法如下所示：
 
@@ -13,15 +16,16 @@ Usage: luyiba [OPTIONS]
   默认全英雄随机选择，你可以设置为自己喜好的清单随机选择。
 
 Options:
-  -i, --input PATH                指定文本随机模式
+  -v, --version                   本软件版本
   -l, --list                      列出全英雄名
-  -a, --all                       全英雄随机模式
-  -m, --mylist                    个人喜好清单随机模式
   --mylist-list                   列出我的喜好英雄清单
   --mylist-input PATH             读取文本导入我的喜好清单
   --mylist-add TEXT               我的喜好清单添加一个
   --mylist-remove TEXT            我的喜好清单删除一个
   --mylist-delete                 我的喜好清单清空
+  -i, --input PATH                指定文本随机模式
+  -a, --all                       全英雄随机模式
+  -m, --mylist                    个人喜好清单随机模式
   -p, --position [top|mid|jungle|bottom|support|t|m|j|b|s]
                                   指定我只想玩那个位置
   -r, --role [tank|mage|support|marksman|fighter|assassin|t|g|s|k|f|a]

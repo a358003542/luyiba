@@ -57,8 +57,10 @@ def mix_all_data_togather():
         heroId = item['heroId']
 
         new_item = item.copy()
-        del new_item['selectAudio']
-        del new_item['banAudio']
+        if 'selectAudio' in new_item:
+            del new_item['selectAudio']
+        if 'banAudio' in new_item:
+            del new_item['banAudio']
 
         new_item['rank_data'] = rank_data['list'].get(str(heroId), {})
         new_item['position_data'] = positon_data['list'].get(str(heroId), {})
@@ -118,6 +120,11 @@ def position_translation(name):
 
 
 def position_shortname(shortname):
+    """
+    position缩写名支持
+    :param shortname:
+    :return:
+    """
     ref_dict = {
         't': 'top',
         'm': 'mid',
@@ -132,6 +139,11 @@ def position_shortname(shortname):
 
 
 def role_shortname(shortname):
+    """
+    role缩写支持
+    :param shortname:
+    :return:
+    """
     ref_dict = {
         't': 'tank',
         'g': 'mage',
@@ -159,6 +171,13 @@ def role_translation(name):
 
 
 def explation_position_rank_data(position, rank_data):
+    """
+    解释英雄排位数据
+    lanshowrate 登场率
+    lanewinrate 胜率
+    champlanorder 排名
+
+    """
     target_rank_data = rank_data[position]
     text = f"{position_translation(position)}【登场率为 {int(target_rank_data['lanshowrate']) * 0.01:.2f}%】 胜率是 {int(target_rank_data['lanewinrate']) * 0.01:.2f}% 排名第{target_rank_data['champlanorder']}名"
     return text
