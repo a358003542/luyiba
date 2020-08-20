@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*-coding:utf-8-*-
+
 import click
+import logging
 
 from luyiba import __version__
-from luyiba.utils import get_all_hero_name, get_mylist, add_mylist, remove_mylist, delete_mylist
+from .cache_utils import add_mylist, remove_mylist, delete_mylist, get_mylist
+from .web_utils import get_all_hero_name
 
 
 def print_version(ctx, param, value):
@@ -11,6 +14,13 @@ def print_version(ctx, param, value):
         return
     click.echo(f'luyiba {__version__}')
     ctx.exit()
+
+
+def enable_debug(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+
+    logging.basicConfig(level=logging.DEBUG)
 
 
 def list_all_hero(ctx, param, value):

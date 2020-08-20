@@ -2,7 +2,7 @@
 # -*-coding:utf-8-*-
 
 
-from luyiba.utils import mix_all_data_togather, download_hero_data
+from luyiba.web_utils import mix_all_data_togather, download_hero_data
 
 
 def test_data_structure():

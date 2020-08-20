@@ -5,17 +5,18 @@ import random
 import click
 
 from luyiba.command_utils import print_version, list_all_hero, list_my_hero, input_mylist_call, add_mylist_call, \
-    remove_mylist_call, delete_mylist_call
-from luyiba.utils import random_line_safe, mix_all_data_togather, get_all_hero_name, explain_it, find_target_by_name, \
-    build_stream_function, random_mylist_safe, \
+    remove_mylist_call, delete_mylist_call, enable_debug
+from luyiba.utils import random_line_safe, explain_it, find_target_by_name, build_stream_function, random_mylist_safe, \
     position_shortname, role_shortname
 from luyiba.filter import *
+from luyiba.web_utils import get_all_hero_name, mix_all_data_togather
 
 logger = logging.getLogger(__name__)
 
 
 @click.command()
 @click.option('-v', '--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True, help='本软件版本')
+@click.option('-V', '--verbose', is_flag=True, is_eager=True, callback=enable_debug, expose_value=False, help='打印输出冗余信息')
 @click.option('-l', '--list', is_flag=True, help='列出全英雄名', is_eager=True, callback=list_all_hero, expose_value=False)
 @click.option('--mylist-list', is_flag=True, help='列出我的喜好英雄清单', is_eager=True, callback=list_my_hero,
               expose_value=False)

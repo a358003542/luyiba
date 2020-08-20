@@ -4,8 +4,7 @@
 import random
 from functools import reduce
 
-from luyiba.cache_utils import cache, MY_FAVORITE_LIST
-from .web_utils import download_position_data, download_hero_data, download_rank_data
+from .cache_utils import get_mylist
 
 
 def random_line(input):
@@ -38,38 +37,6 @@ def random_line_safe(input, hero_name_list):
         return random_line_safe(input, hero_name_list)
 
 
-def get_all_hero_name(data=None):
-    if not data:
-        data = download_hero_data()['hero']
-    res = []
-    for item in data:
-        res.append(item['name'])
-    return res
-
-
-def mix_all_data_togather():
-    hero_data = download_hero_data()
-    positon_data = download_position_data()
-    rank_data = download_rank_data()
-
-    res = []
-    for item in hero_data['hero']:
-        heroId = item['heroId']
-
-        new_item = item.copy()
-        if 'selectAudio' in new_item:
-            del new_item['selectAudio']
-        if 'banAudio' in new_item:
-            del new_item['banAudio']
-
-        new_item['rank_data'] = rank_data['list'].get(str(heroId), {})
-        new_item['position_data'] = positon_data['list'].get(str(heroId), {})
-
-        res.append(new_item)
-
-    return res
-
-
 def num_file(input):
     length = len(open(input, encoding='utf8').readlines())
     return length
@@ -84,28 +51,6 @@ def build_stream_function(*funcs):
     """
 
     return reduce(lambda f, g: lambda d: g(f(d)), funcs)
-
-
-def add_mylist(value):
-    my_favorite_list = cache.get(MY_FAVORITE_LIST, set())
-    my_favorite_list.add(value)
-    cache.set(MY_FAVORITE_LIST, my_favorite_list)
-
-
-def remove_mylist(value):
-    my_favorite_list = cache.get(MY_FAVORITE_LIST, set())
-    my_favorite_list.discard(value)
-    cache.set(MY_FAVORITE_LIST, my_favorite_list)
-
-
-def delete_mylist():
-    cache.set(MY_FAVORITE_LIST, set())
-
-
-def get_mylist():
-    my_favorite_list = cache.get(MY_FAVORITE_LIST, set())
-
-    return list(my_favorite_list)
 
 
 def position_translation(name):
