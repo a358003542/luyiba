@@ -1,5 +1,6 @@
 click
 diskcache
 requests
-my-fake-useragent
+my-fake-useragent>=0.2.0
 js2py
+python-dateutil

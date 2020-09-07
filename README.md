@@ -9,6 +9,18 @@ pip install luyiba
 具体用法如下所示：
 
 ```
+luyiba --help
+```
+
+或者
+
+```
+python -m luyiba --help
+```
+
+
+
+```
 Usage: luyiba [OPTIONS]
 
   英雄联盟随机英雄选择器
