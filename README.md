@@ -75,3 +75,7 @@ luyiba --position=top
 ```text
 luyiba --position=mid --role=assassin
 ```
+
+## 视频讲解
+
+[https://www.bilibili.com/video/BV1nK411K7wv](https://www.bilibili.com/video/BV1nK411K7wv)
