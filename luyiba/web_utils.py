@@ -4,11 +4,11 @@
 import threading
 import logging
 import requests
-import js2py
 from my_fake_useragent import UserAgent
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+from .js_file_loader import js_file_loader
 from .cache_utils import cachedb, func_cache
 from .datetime_helper import get_timestamp, get_dt_fromtimestamp
 
@@ -74,7 +74,10 @@ def _requests_web(url):
 def download_position_data():
     res = _requests_web(position_url)
 
-    position_data = js2py.eval_js(res.text).to_dict()
+    position_data = js_file_loader(res.text)
+
+    # 为了保证和旧版本缓存数据兼容
+    position_data = position_data['CHAMPION_POSITION']
 
     return position_data
 
@@ -83,7 +86,10 @@ def download_position_data():
 def download_rank_data():
     res = _requests_web(rank_url)
 
-    rank_data = js2py.eval_js(res.text).to_dict()
+    rank_data = js_file_loader(res.text)
+
+    # 为了保证和旧版本缓存数据兼容
+    rank_data = rank_data['CHAMPION_RANK']
 
     return rank_data
 
@@ -108,6 +114,19 @@ def get_all_hero_name(data=None):
         res.append(item['name'])
     return res
 
+def add_hot_rate(data):
+    """
+    """
+    new_data = []
+
+    for item in data:
+        new_item = item.copy()
+        rank_data = new_item['rank_data']
+        hotrate = int(rank_data['banrate']) + int(rank_data['showrate'])
+        rank_data['hotrate'] = hotrate
+        new_data.append(new_item)
+
+    return new_data
 
 def mix_all_data_togather():
     hero_data = download_hero_data()
@@ -128,5 +147,7 @@ def mix_all_data_togather():
         new_item['position_data'] = positon_data['list'].get(str(heroId), {})
 
         res.append(new_item)
+
+    res = add_hot_rate(res)
 
     return res

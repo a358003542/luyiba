@@ -47,18 +47,6 @@ def list_my_hero(ctx, param, value):
     ctx.exit()
 
 
-def input_mylist_call(ctx, param, value):
-    if not value or ctx.resilient_parsing:
-        return
-
-    line = open(value, encoding='utf8').readlines()
-    for item in line:
-        item = item.strip()
-        if item:
-            add_mylist(item)
-    ctx.exit()
-
-
 def add_mylist_call(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return

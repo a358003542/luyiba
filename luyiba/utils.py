@@ -27,21 +27,6 @@ def random_mylist_safe(hero_name_list):
         return ''
 
 
-def random_line_safe(input, hero_name_list):
-    file_list = open(input, encoding='utf8').readlines()
-    file_list = [line.strip() for line in file_list]
-    line = random.choice(file_list)
-    if line and (line in hero_name_list):
-        return line
-    else:
-        return random_line_safe(input, hero_name_list)
-
-
-def num_file(input):
-    length = len(open(input, encoding='utf8').readlines())
-    return length
-
-
 def build_stream_function(*funcs):
     """
     构建流处理函数 函数参数更严格 只接受一个参数 d 字典值
@@ -128,14 +113,23 @@ def explation_position_rank_data(position, rank_data):
     return text
 
 
+def explain_hot_rate(rank_data):
+    """
+    """
+    winrate = rank_data['winrate']
+    showrate = rank_data['showrate']
+    banrate = rank_data['banrate']
+    hotrate = rank_data['hotrate']
+
+    text = f"热门率：{hotrate * 0.01:.2f}%  总ban率：{int(banrate) * 0.01:.2f}%  总选用率：{int(showrate) * 0.01:.2f}%  总胜率：{int(winrate) * 0.01:.2f}%  "
+    return text
+
+
 def explain_position(position_data, rank_data):
     text = ''
     count = 0
 
     for k, v in sorted(position_data.items(), key=lambda d: int(d[1]), reverse=True):
-        if count >= 2:
-            break
-
         line = ''
         if count >= 1:
             line += '此外他还作为'
@@ -157,11 +151,15 @@ def explain_it(item):
     return f"""你选中的是英雄 {item['name']} {item['title']} 英文名: {item['alias']} 
 他是一个 {'和'.join([role_translation(name) for name in item['roles']])} 
 他的操作难度是 {item['difficulty']} 【满分10】
-{explain_position(item['position_data'], item['rank_data'])}
-"""
+{explain_hot_rate(item['rank_data'])}
+{explain_position(item['position_data'], item['rank_data'])}"""
 
 
 def find_target_by_name(all_data, name):
     for item in all_data:
         if item['name'] == name:
             return item
+
+
+
+
