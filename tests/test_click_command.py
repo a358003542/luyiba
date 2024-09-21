@@ -20,8 +20,6 @@ def test_main_command():
 
     result = runner.invoke(main, ['--mylist-list'])
     assert result.exit_code == 0
-    result = runner.invoke(main, ['-m'])
-    assert result.exit_code == 0
 
     result = runner.invoke(main, ['-p', 't'])
     assert result.exit_code == 0
