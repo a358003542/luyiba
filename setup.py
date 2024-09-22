@@ -8,9 +8,9 @@ import os
 REQUIREMENTS = ['click',
                 'diskcache',
                 'requests',
-                'my-fake-useragent',
+                'my-fake-useragent>=0.2.0',
                 'pyparsing',
-                'pywander'
+                'pywander>=0.7.4'
                 ]
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
