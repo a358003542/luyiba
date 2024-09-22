@@ -109,7 +109,8 @@ def explation_position_rank_data(position, rank_data):
 
     """
     target_rank_data = rank_data[position]
-    text = f"{position_translation(position)}【登场率为 {int(target_rank_data['lanshowrate']) * 0.01:.2f}%】 胜率是 {int(target_rank_data['lanewinrate']) * 0.01:.2f}% 排名第{target_rank_data['champlanorder']}名"
+    text = f"{position_translation(position)}【登场率为 {int(target_rank_data['lanshowrate']) * 0.01:.2f}%】 胜率是 {
+        int(target_rank_data['lanewinrate']) * 0.01:.2f}% 排名第{target_rank_data['champlanorder']}名"
     return text
 
 
@@ -121,7 +122,8 @@ def explain_hot_rate(rank_data):
     banrate = rank_data['banrate']
     hotrate = rank_data['hotrate']
 
-    text = f"热门率：{hotrate * 0.01:.2f}%  总ban率：{int(banrate) * 0.01:.2f}%  总选用率：{int(showrate) * 0.01:.2f}%  总胜率：{int(winrate) * 0.01:.2f}%  "
+    text = f"热门率：{hotrate * 0.01:.2f}%  总ban率：{int(banrate) * 0.01:.2f}%  总选用率：{
+        int(showrate) * 0.01:.2f}%  总胜率：{int(winrate) * 0.01:.2f}%  "
     return text
 
 
@@ -148,8 +150,8 @@ def explain_position(position_data, rank_data):
 
 
 def explain_it(item):
-    return f"""你选中的是英雄 {item['name']} {item['title']} 英文名: {item['alias']} 
-他是一个 {'和'.join([role_translation(name) for name in item['roles']])} 
+    return f"""你选中的是英雄 {item['name']} {item['title']} 英文名: {item['alias']}
+他是一个 {'和'.join([role_translation(name) for name in item['roles']])}
 他的操作难度是 {item['difficulty']} 【满分10】
 {explain_hot_rate(item['rank_data'])}
 {explain_position(item['position_data'], item['rank_data'])}"""
@@ -159,7 +161,3 @@ def find_target_by_name(all_data, name):
     for item in all_data:
         if item['name'] == name:
             return item
-
-
-
-

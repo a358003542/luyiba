@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 @click.option('--mylist-remove', help='我的喜好清单删除一个', is_eager=True, callback=remove_mylist_call, expose_value=False)
 @click.option('--mylist-delete', is_flag=True, help='我的喜好清单清空', is_eager=True, callback=delete_mylist_call,
               expose_value=False)
-def main(mode='all', mylist=False, position='', role='', name='', rank='hot', number=5):
+def main(mode='all', position='', role='', name='', rank='hot', number=5):
     """
     英雄联盟辅助小工具
     """
@@ -82,18 +82,22 @@ def main(mode='all', mylist=False, position='', role='', name='', rank='hot', nu
     elif mode == 'rank':
         # 排序
         if rank == 'ban':
-            data = sorted(data, key=lambda item: int(item['rank_data']['banrate']), reverse=True)
+            data = sorted(data, key=lambda item: int(
+                item['rank_data']['banrate']), reverse=True)
         elif rank == 'show':
-            data = sorted(data, key=lambda item: int(item['rank_data']['showrate']), reverse=True)
+            data = sorted(data, key=lambda item: int(
+                item['rank_data']['showrate']), reverse=True)
         elif rank == 'win':
-            data = sorted(data, key=lambda item: int(item['rank_data']['winrate']), reverse=True)
+            data = sorted(data, key=lambda item: int(
+                item['rank_data']['winrate']), reverse=True)
         elif rank == 'hot':
-            data = sorted(data, key=lambda item: item['rank_data']['hotrate'], reverse=True)
+            data = sorted(
+                data, key=lambda item: item['rank_data']['hotrate'], reverse=True)
 
         for item in data[:number]:
             click.echo(explain_it(item))
 
-        return 
+        return
 
 
 if __name__ == '__main__':

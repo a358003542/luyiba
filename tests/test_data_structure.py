@@ -7,14 +7,15 @@ from luyiba.web_utils import mix_all_data_togather, download_hero_data, download
 
 def test_position_data():
     position_data = download_position_data()
+
     assert position_data['list']
+
 
 def test_rank_data():
     """
     """
     rank_data = download_rank_data()
     assert rank_data['list']
-
 
 
 def test_data_structure():
@@ -61,5 +62,3 @@ def test_data_structure():
             assert 'lanshowrate' in item['rank_data'][position]
             assert 'lanewinrate' in item['rank_data'][position]
             assert 'champlanorder' in item['rank_data'][position]
-
-

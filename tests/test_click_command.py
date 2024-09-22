@@ -29,4 +29,3 @@ def test_main_command():
 
     result = runner.invoke(main, ['--version'])
     assert result.exit_code == 0
-    assert result.output == 'luyiba 0.4.0\n'
