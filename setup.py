@@ -9,7 +9,8 @@ REQUIREMENTS = ['click',
                 'diskcache',
                 'requests',
                 'my-fake-useragent',
-                'pyparsing'
+                'pyparsing',
+                'pywander'
                 ]
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
@@ -17,7 +18,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='luyiba',
-    version='0.4.2',
+    version='0.4.3',
     description='英雄联盟随机英雄选择器',
     url='https://github.com/a358003542/luyiba',
     long_description=long_description,
@@ -29,12 +30,10 @@ setup(
     license='MIT',
     platforms='windows',
     keywords=['lol', 'python'],
-    classifiers=['Development Status :: 4 - Beta',
-                 'Environment :: Console',
+    classifiers=['Environment :: Console',
                  'Operating System :: Microsoft :: Windows',
                  'License :: OSI Approved :: MIT License',
-                 'Programming Language :: Python :: 3.6',
-                 'Programming Language :: Python :: 3.7'
+                 'Programming Language :: Python :: 3',
                  ],
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     include_package_data=True,
