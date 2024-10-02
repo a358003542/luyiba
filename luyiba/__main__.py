@@ -3,6 +3,8 @@
 
 import random
 import click
+# pyintaller need
+import luyiba.config
 
 from luyiba.command_utils import print_version, list_all_hero, list_my_hero, add_mylist_call, remove_mylist_call, \
     delete_mylist_call, enable_debug
