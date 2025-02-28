@@ -3,8 +3,6 @@
 
 import random
 import click
-# pyintaller need
-import luyiba.config
 
 from luyiba.command_utils import print_version, list_all_hero, list_my_hero, add_mylist_call, remove_mylist_call, \
     delete_mylist_call, enable_debug
@@ -17,11 +15,16 @@ logger = logging.getLogger(__name__)
 
 
 @click.command()
-@click.option('-v', '--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True, help='本软件版本')
-@click.option('-V', '--verbose', is_flag=True, is_eager=True, callback=enable_debug, expose_value=False, help='打印输出冗余信息')
-@click.option('-l', '--list', is_flag=True, help='列出全英雄名', is_eager=True, callback=list_all_hero, expose_value=False)
-@click.option('-m', '--mode', default='all', show_default=True, help='模式： all 全英雄随机 mylist 我的喜好清单随机 rank 排名列出模式')
-@click.option('--rank', default='hot', show_default=True, type=click.Choice(['hot', 'ban', 'show', 'win'], case_sensitive=False), help='根据什么排名，默认热门率')
+@click.option('-v', '--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True,
+              help='本软件版本')
+@click.option('-V', '--verbose', is_flag=True, is_eager=True, callback=enable_debug, expose_value=False,
+              help='打印输出冗余信息')
+@click.option('-l', '--list', is_flag=True, help='列出全英雄名', is_eager=True, callback=list_all_hero,
+              expose_value=False)
+@click.option('-m', '--mode', default='all', show_default=True,
+              help='模式： all 全英雄随机 mylist 我的喜好清单随机 rank 排名列出模式')
+@click.option('--rank', default='hot', show_default=True,
+              type=click.Choice(['hot', 'ban', 'show', 'win'], case_sensitive=False), help='根据什么排名，默认热门率')
 @click.option('-n', '--name', help='指定英雄名字选取模式')
 @click.option('--number', default=5, type=int, show_default=True, help='rank模式下显示数目')
 @click.option('-p', '--position', type=click.Choice(['top', 'mid', 'jungle', 'bottom', 'support',
@@ -33,7 +36,8 @@ logger = logging.getLogger(__name__)
 @click.option('--mylist-list', is_flag=True, help='列出我的喜好英雄清单', is_eager=True, callback=list_my_hero,
               expose_value=False)
 @click.option('--mylist-add', help='我的喜好清单添加一个', is_eager=True, callback=add_mylist_call, expose_value=False)
-@click.option('--mylist-remove', help='我的喜好清单删除一个', is_eager=True, callback=remove_mylist_call, expose_value=False)
+@click.option('--mylist-remove', help='我的喜好清单删除一个', is_eager=True, callback=remove_mylist_call,
+              expose_value=False)
 @click.option('--mylist-delete', is_flag=True, help='我的喜好清单清空', is_eager=True, callback=delete_mylist_call,
               expose_value=False)
 def main(mode='all', position='', role='', name='', rank='hot', number=5):

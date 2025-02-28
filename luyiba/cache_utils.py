@@ -3,11 +3,15 @@
 
 import logging
 
-from pywander.crawler.cache_utils import cachedb
+from pywander.cache import get_cachedb
+from luyiba import APP_NAME
 
 logger = logging.getLogger(__name__)
 
+
 MY_FAVORITE_LIST = 'my-favorite-list'
+
+cachedb = get_cachedb(APP_NAME)
 
 
 def add_mylist(value):

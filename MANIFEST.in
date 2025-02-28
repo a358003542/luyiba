@@ -2,5 +2,5 @@ include *.txt
 include *.md
 include LICENSE
 include .gitignore
-recursive-include tests *.py
+recursive-exclude tests *.py
 

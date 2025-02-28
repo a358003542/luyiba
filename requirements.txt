@@ -4,4 +4,4 @@ requests
 my-fake-useragent>=0.2.0
 python-dateutil
 pyparsing
-pywander>=0.7.9
+pywander>=0.8.1

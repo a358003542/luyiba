@@ -10,7 +10,7 @@ REQUIREMENTS = ['click',
                 'requests',
                 'my-fake-useragent>=0.2.0',
                 'pyparsing',
-                'pywander>=0.7.4'
+                'pywander>=0.8.1'
                 ]
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
@@ -18,7 +18,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='luyiba',
-    version='0.4.3',
+    version='0.5.0',
     description='英雄联盟随机英雄选择器',
     url='https://github.com/a358003542/luyiba',
     long_description=long_description,

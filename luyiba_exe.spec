@@ -2,9 +2,8 @@
 
 block_cipher = None
 
-
 a = Analysis(['luyiba\\__main__.py'],
-             pathex=['D:\\github\\backup\\luyiba'],
+             pathex=['D:\\github\\archive\\luyiba'],
              binaries=[],
              datas=[],
              hiddenimports=[],

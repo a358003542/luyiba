@@ -2,19 +2,42 @@
 # -*-coding:utf-8-*-
 
 import logging
+import requests
 
+from pywander.cache import func_cache, get_cachedb
 from pywander.crawler.js_file_loader import js_file_loader
-from pywander.crawler.cache_utils import func_cache
-from pywander.crawler.web_utils import requests_web
+from pywander.crawler.web_utils import use_cache_callback_requests_web
+from pywander.crawler.utils import ua
+
+from luyiba import APP_NAME
 
 logger = logging.getLogger(__name__)
 
 rank_url = 'https://lol.qq.com/act/lbp/common/guides/guideschampion_rank.js'
 position_url = 'https://lol.qq.com/act/lbp/common/guides/guideschampion_position.js'
 hero_url = 'https://game.gtimg.cn/images/lol/act/img/js/heroList/hero_list.js'
+cachedb = get_cachedb(APP_NAME)
 
 
-@func_cache("position_data")
+@func_cache(cachedb, use_cache_callback=use_cache_callback_requests_web)
+def requests_web(url):
+    """
+    有数据则缓存中直接使用 没有数据则试着从网络上请求
+    直接使用数据的时候会根据数据的时间戳来判断新旧，如果数据过旧则启动后台更新线程
+
+    :param url:
+    :return:
+    """
+    headers = {
+        'user-agent': ua.random()
+    }
+
+    data = requests.get(url, headers=headers, timeout=30)
+
+    return data
+
+
+@func_cache(cachedb, use_key="position_data")
 def download_position_data():
     res = requests_web(position_url)
 
@@ -26,7 +49,7 @@ def download_position_data():
     return position_data
 
 
-@func_cache("rank_data")
+@func_cache(cachedb, use_key="rank_data")
 def download_rank_data():
     res = requests_web(rank_url)
 
@@ -38,7 +61,7 @@ def download_rank_data():
     return rank_data
 
 
-@func_cache("hero_data")
+@func_cache(cachedb, use_key="hero_data")
 def download_hero_data():
     """
     :return:
