@@ -2,5 +2,6 @@ include *.txt
 include *.md
 include LICENSE
 include .gitignore
+include setup.cfg
 recursive-exclude tests *.py
 
